@@ -14,6 +14,8 @@ class STANKY_API AMyTankController : public APlayerController
 {
 	GENERATED_BODY()
 		void BeginPlay() override;
+		void Tick(float DeltaTime) override;
+		bool Crosshair();
 		ATank* GetControlledTank();
 	
 };
