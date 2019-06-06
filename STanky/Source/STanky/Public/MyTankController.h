@@ -13,9 +13,16 @@ UCLASS()
 class STANKY_API AMyTankController : public APlayerController
 {
 	GENERATED_BODY()
+		UPROPERTY( EditAnywhere)
+		float CrosshairLocationX = .5;
+	    UPROPERTY(EditAnywhere)
+		float CrosshairLocationY = 1.0/3.0;
 		void BeginPlay() override;
 		void Tick(float DeltaTime) override;
-		bool Crosshair();
+		void AimCrosshair();
 		ATank* GetControlledTank();
+		bool SightRayHit(FVector &Hit);
+
+		bool GetLookLocation(FVector2D &ScreenLocation, FVector &WDirection);
 	
 };

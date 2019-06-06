@@ -12,12 +12,41 @@ void AMyTankController::BeginPlay()
 void AMyTankController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	UE_LOG(LogTemp, Log, TEXT("ana 7aly m4 3agbny"));
+	AimCrosshair();
+}
+
+void AMyTankController::AimCrosshair()
+{
+	if (!GetControlledTank()) return;
+	FVector HitLocation;
+	SightRayHit(HitLocation);
+	//UE_LOG(LogTemp, Warning, TEXT("Hit Location :%s"), *HitLocation.ToString());
 }
 
 ATank * AMyTankController::GetControlledTank()
 {
 	return Cast<ATank>(GetPawn());
+}
+
+bool AMyTankController::SightRayHit(FVector & Hit)
+{
+	int32 ViewPortSizeX, ViewPortSizeY;
+	GetViewportSize(ViewPortSizeX, ViewPortSizeY);
+	FVector2D ScreenLocation = FVector2D(CrosshairLocationX*ViewPortSizeX, CrosshairLocationY*ViewPortSizeY);
+	FVector LookDirection;
+	if (GetLookLocation(ScreenLocation, LookDirection))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Look Direction :%s"), *LookDirection.ToString());
+		return true;
+	}
+	return false;
+}
+
+bool AMyTankController::GetLookLocation(FVector2D &ScreenLocation, FVector &WDirection)
+{
+	FVector WLocation;
+	return DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y, WLocation, WDirection);
+
 }
 
 
