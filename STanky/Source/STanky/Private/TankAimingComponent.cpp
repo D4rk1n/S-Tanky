@@ -57,7 +57,12 @@ void UTankAimingComponent::AimAt(FVector WorldAimLocation, float LSpeed)
 	if (HaveAim)
 	{
 		FVector AimDirection = LaunchVelocity.GetSafeNormal();
+		UE_LOG(LogTemp, Log, TEXT("AimSolution"));
 		MoveBarrel(AimDirection);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("No AimSolution"));
 	}
 }
 

@@ -4,5 +4,5 @@
 
 void UTankBarrel::Elevate(float DPS)
 {
-	UE_LOG(LogTemp, Warning, TEXT("UTankBarrel at %f") ,DPS);
+	//UE_LOG(LogTemp, Warning, TEXT("UTankBarrel at %f") ,DPS);
 }

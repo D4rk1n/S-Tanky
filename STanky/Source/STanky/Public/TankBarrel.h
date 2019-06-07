@@ -18,7 +18,7 @@ public :
 	UPROPERTY(EditAnyWhere, Category = Setup)
 		float MaxDPS = 20;
 	UPROPERTY(EditAnyWhere, Category = Setup)
-		float MaxD = 70;
+		float MaxD = 45;
 	UPROPERTY(EditAnyWhere, Category = Setup)
 		float MinD = 0;
 
