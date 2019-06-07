@@ -8,7 +8,8 @@ void UTankAimingComponent::MoveBarrel(FVector AimDirection)
 	FRotator CurrBarrelR = Barrel->GetForwardVector().Rotation();
 	FRotator AimR = AimDirection.Rotation();
 	FRotator DeltaR = AimR-CurrBarrelR;
-	Barrel->Elevate(5);
+	//UE_LOG(LogTemp, Log, TEXT("Pitch : %f"), DeltaR.Pitch);
+	Barrel->Elevate(DeltaR.Pitch);
 }
 
 // Sets default values for this component's properties
@@ -57,7 +58,6 @@ void UTankAimingComponent::AimAt(FVector WorldAimLocation, float LSpeed)
 	if (HaveAim)
 	{
 		FVector AimDirection = LaunchVelocity.GetSafeNormal();
-		UE_LOG(LogTemp, Log, TEXT("AimSolution"));
 		MoveBarrel(AimDirection);
 	}
 	else
