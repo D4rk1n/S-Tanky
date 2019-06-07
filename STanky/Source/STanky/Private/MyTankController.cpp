@@ -12,7 +12,7 @@ void AMyTankController::BeginPlay()
 void AMyTankController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	AimCrosshair();
+	//AimCrosshair();
 }
 
 void AMyTankController::AimCrosshair()
@@ -20,7 +20,7 @@ void AMyTankController::AimCrosshair()
 	if (!GetControlledTank()) return;
 	FVector HitLocation;
 	SightRayHit(HitLocation);
-	UE_LOG(LogTemp, Warning, TEXT("Hit Location :%s"), *HitLocation.ToString());
+	GetControlledTank()->AimAt(HitLocation);
 }
 
 ATank * AMyTankController::GetControlledTank()

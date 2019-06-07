@@ -16,6 +16,7 @@ class STANKY_API ATankAIController : public AAIController
 	GENERATED_BODY()
 	ATank* CTank=nullptr;
 	ATank* PTank=nullptr;
+	void Tick(float DeltaTime) override;
 public:
 	void BeginPlay() override;
 	ATank* GetControlledTank();
