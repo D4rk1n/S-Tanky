@@ -1,6 +1,15 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+
 #include "TankAimingComponent.h"
+#include "TankBarrel.h"
+void UTankAimingComponent::MoveBarrel(FVector AimDirection)
+{
+	FRotator CurrBarrelR = Barrel->GetForwardVector().Rotation();
+	FRotator AimR = AimDirection.Rotation();
+	FRotator DeltaR = AimR-CurrBarrelR;
+	Barrel->Elevate(5);
+}
 
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
@@ -10,6 +19,12 @@ UTankAimingComponent::UTankAimingComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
+}
+
+void UTankAimingComponent::SetBarrel(UTankBarrel * Barrel)
+{
+	this->Barrel = Barrel;
+	
 }
 
 
@@ -31,9 +46,18 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
-void UTankAimingComponent::AimAt(FVector WorldAimLocation)
+void UTankAimingComponent::AimAt(FVector WorldAimLocation, float LSpeed)
 {
-	
-	UE_LOG(LogTemp, Log, TEXT("Tank : %s is Aiming At %s"), *GetOwner()->GetName(), *WorldAimLocation.ToString());
+	if (!Barrel) { 
+		UE_LOG(LogTemp, Error, TEXT("Couldn't Find Barrel"));
+		
+		return; }
+	FVector LaunchVelocity;
+	bool HaveAim = UGameplayStatics::SuggestProjectileVelocity(this, LaunchVelocity, Barrel->GetSocketLocation(FName("LaunchPoint")), WorldAimLocation, LSpeed, 0, 0, 0, ESuggestProjVelocityTraceOption::DoNotTrace);
+	if (HaveAim)
+	{
+		FVector AimDirection = LaunchVelocity.GetSafeNormal();
+		MoveBarrel(AimDirection);
+	}
 }
 

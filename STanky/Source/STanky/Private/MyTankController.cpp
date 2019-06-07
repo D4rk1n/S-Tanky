@@ -57,12 +57,13 @@ bool AMyTankController::GetLookDirection(FVector LookDirection, FVector &Hit)
 	if (GetWorld()->LineTraceSingleByChannel(HitActor, Start, End, ECollisionChannel::ECC_Visibility))
 	{
 		Hit = HitActor.Location	;
+		
 		return true;
 	}
 	else
 	{
+		
 		Hit.Set(0, 0, 0);
-		UE_LOG(LogTemp, Error, TEXT("NOT HITTING ANY THING"));
 		return false;
 	}
 

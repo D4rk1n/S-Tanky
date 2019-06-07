@@ -20,7 +20,10 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	UTankAimingComponent* TankAimingComponent = nullptr;
-
+	UFUNCTION(BlueprintCallable , Category = Setup)
+		void SetBarrel(UTankBarrel* B);
+	UPROPERTY(EditAnyWhere, Category = Firing)
+		float LaunchSpeed = 100000;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
