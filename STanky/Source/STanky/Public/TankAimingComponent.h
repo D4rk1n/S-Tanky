@@ -10,6 +10,7 @@
 #include "TankAimingComponent.generated.h"
 
 class UTankBarrel;
+class UTankTurret;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class STANKY_API UTankAimingComponent : public UActorComponent
@@ -19,11 +20,14 @@ class STANKY_API UTankAimingComponent : public UActorComponent
 
 private:
 	UTankBarrel * Barrel;
+	UTankTurret * Turret;
 	void MoveBarrel(FVector AimDirection);
+	void MoveTurret(FVector AimDirection);
 public:	
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 	void SetBarrel(UTankBarrel* Barrel);
+	void SetTurret(UTankTurret* Turret);
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;

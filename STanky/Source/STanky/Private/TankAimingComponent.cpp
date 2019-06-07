@@ -3,6 +3,7 @@
 
 #include "TankAimingComponent.h"
 #include "TankBarrel.h"
+#include "TankTurret.h"
 void UTankAimingComponent::MoveBarrel(FVector AimDirection)
 {
 	FRotator CurrBarrelR = Barrel->GetForwardVector().Rotation();
@@ -10,6 +11,15 @@ void UTankAimingComponent::MoveBarrel(FVector AimDirection)
 	FRotator DeltaR = AimR-CurrBarrelR;
 	//UE_LOG(LogTemp, Log, TEXT("Pitch : %f"), DeltaR.Pitch);
 	Barrel->Elevate(DeltaR.Pitch);
+}
+
+void UTankAimingComponent::MoveTurret(FVector AimDirection)
+{
+	FRotator CurrTurretR = Turret->GetForwardVector().Rotation();
+	FRotator AimR = AimDirection.Rotation();
+	FRotator DeltaR = AimR - CurrTurretR;
+	//UE_LOG(LogTemp, Log, TEXT("Pitch : %f"), DeltaR.Pitch);
+	Turret->Rotate(DeltaR.Yaw);
 }
 
 // Sets default values for this component's properties
@@ -26,6 +36,11 @@ void UTankAimingComponent::SetBarrel(UTankBarrel * Barrel)
 {
 	this->Barrel = Barrel;
 	
+}
+
+void UTankAimingComponent::SetTurret(UTankTurret * Turret)
+{
+	this->Turret = Turret;
 }
 
 
@@ -49,8 +64,9 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 
 void UTankAimingComponent::AimAt(FVector WorldAimLocation, float LSpeed)
 {
-	if (!Barrel) { 
-		UE_LOG(LogTemp, Error, TEXT("Couldn't Find Barrel"));
+	if (!Barrel||!Turret) { 
+		if (!Barrel) UE_LOG(LogTemp, Error, TEXT("Couldn't Find Barrel"));
+		if(!Turret) UE_LOG(LogTemp, Error, TEXT("Couldn't Find Turret"));
 		
 		return; }
 	FVector LaunchVelocity;
@@ -59,6 +75,7 @@ void UTankAimingComponent::AimAt(FVector WorldAimLocation, float LSpeed)
 	{
 		FVector AimDirection = LaunchVelocity.GetSafeNormal();
 		MoveBarrel(AimDirection);
+		MoveTurret(AimDirection);
 	}
 	else
 	{

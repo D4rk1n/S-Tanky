@@ -28,6 +28,11 @@ void ATank::SetBarrel(UTankBarrel * B)
 	TankAimingComponent->SetBarrel(B);
 }
 
+void ATank::SetTurret(UTankTurret * T)
+{
+	TankAimingComponent->SetTurret(T);
+}
+
 // Called every frame
 void ATank::Tick(float DeltaTime)
 {

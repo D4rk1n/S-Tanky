@@ -22,6 +22,8 @@ protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
 	UFUNCTION(BlueprintCallable , Category = Setup)
 		void SetBarrel(UTankBarrel* B);
+	UFUNCTION(BlueprintCallable, Category = Setup)
+		void SetTurret(UTankTurret* T);
 	UPROPERTY(EditAnyWhere, Category = Firing)
 		float LaunchSpeed = 100000;
 public:	
