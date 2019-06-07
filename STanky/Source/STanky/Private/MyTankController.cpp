@@ -12,7 +12,7 @@ void AMyTankController::BeginPlay()
 void AMyTankController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//AimCrosshair();
+	AimCrosshair();
 }
 
 void AMyTankController::AimCrosshair()
@@ -61,6 +61,8 @@ bool AMyTankController::GetLookDirection(FVector LookDirection, FVector &Hit)
 	}
 	else
 	{
+		Hit.Set(0, 0, 0);
+		UE_LOG(LogTemp, Error, TEXT("NOT HITTING ANY THING"));
 		return false;
 	}
 
