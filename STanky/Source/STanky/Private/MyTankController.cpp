@@ -19,8 +19,11 @@ void AMyTankController::AimCrosshair()
 {
 	if (!GetControlledTank()) return;
 	FVector HitLocation;
-	SightRayHit(HitLocation);
-	GetControlledTank()->AimAt(HitLocation);
+	if(SightRayHit(HitLocation))
+		GetControlledTank()->AimAt(HitLocation);
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("NoAimCrosshair"));
+	}
 }
 
 ATank * AMyTankController::GetControlledTank()
@@ -62,8 +65,8 @@ bool AMyTankController::GetLookDirection(FVector LookDirection, FVector &Hit)
 	}
 	else
 	{
-		
-		Hit.Set(0, 0, 0);
+		UE_LOG(LogTemp, Warning, TEXT("NoLineTrace"));
+		//Hit.Set(0, 0, 0);
 		return false;
 	}
 
