@@ -33,6 +33,11 @@ void ATank::SetTurret(UTankTurret * T)
 	TankAimingComponent->SetTurret(T);
 }
 
+void ATank::Fire()
+{
+	UE_LOG(LogTemp, Log, TEXT("Fire Boom"));
+}
+
 // Called every frame
 void ATank::Tick(float DeltaTime)
 {

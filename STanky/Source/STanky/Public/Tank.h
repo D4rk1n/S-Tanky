@@ -24,6 +24,8 @@ protected:
 		void SetBarrel(UTankBarrel* B);
 	UFUNCTION(BlueprintCallable, Category = Setup)
 		void SetTurret(UTankTurret* T);
+	UFUNCTION(BlueprintCallable, Category = Input)
+		void Fire();
 	UPROPERTY(EditAnyWhere, Category = Firing)
 		float LaunchSpeed = 100000;
 public:	
