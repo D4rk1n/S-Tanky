@@ -35,7 +35,7 @@ void ATank::SetTurret(UTankTurret * T)
 
 void ATank::Fire()
 {
-	UE_LOG(LogTemp, Log, TEXT("Fire Boom"));
+	UE_LOG(LogTemp, Log, TEXT("Fire Boom")); 
 }
 
 // Called every frame
