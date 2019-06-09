@@ -5,7 +5,8 @@
 void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+	CTank->AimAt(GetPlayerTank()->GetActorLocation()-FVector(0,0,400));
+	CTank->Fire();
 
 }
 
@@ -13,18 +14,11 @@ void ATankAIController::BeginPlay()
 {
 
 	Super::BeginPlay();
-	CTank = GetControlledTank();
+	CTank = Cast<ATank>(GetPawn());
 	PTank = GetPlayerTank();
-	if(CTank)
-		UE_LOG(LogTemp, Error, TEXT("AI Tank #%s"), *(CTank->GetName()));
-	if (PTank)
-		UE_LOG(LogTemp, Error, TEXT("Player Tank #%s"), *(PTank->GetName()));
+
 }
 
-ATank * ATankAIController::GetControlledTank()
-{
-	return Cast<ATank>(GetPawn());
-}
 
 ATank * ATankAIController::GetPlayerTank()
 {

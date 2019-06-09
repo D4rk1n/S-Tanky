@@ -15,7 +15,8 @@ class STANKY_API ATank : public APawn
 	GENERATED_BODY()
 private:
 	UTankBarrel * Barrel;
-
+	float ReloadTime;
+	double LastFireTime;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -24,8 +25,6 @@ protected:
 		void SetBarrel(UTankBarrel* B);
 	UFUNCTION(BlueprintCallable, Category = Setup)
 		void SetTurret(UTankTurret* T);
-	UFUNCTION(BlueprintCallable, Category = Input)
-		void Fire();
 	UPROPERTY(EditAnyWhere, Category = Firing)
 		float LaunchSpeed = 100000;
 	UPROPERTY(EditAnyWhere, Category = Firing)
@@ -39,7 +38,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	UFUNCTION(BlueprintCallable, Category = Input)
+		void Fire();
 	
 
 };
