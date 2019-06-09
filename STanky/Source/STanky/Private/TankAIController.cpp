@@ -5,7 +5,7 @@
 void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	CTank->AimAt(GetPlayerTank()->GetActorLocation()-FVector(0,0,400));
+	CTank->AimAt(GetPlayerTank()->GetActorLocation());
 	CTank->Fire();
 
 }

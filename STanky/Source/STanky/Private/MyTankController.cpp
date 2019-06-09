@@ -13,6 +13,9 @@ void AMyTankController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	AimCrosshair();
+	auto s = GetControlledTank()->GetActorLocation().ToString();
+	GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Log, TEXT("at %f is at %s "), GetWorld()->GetTimeSeconds(), *s);
 }
 
 void AMyTankController::AimCrosshair()
