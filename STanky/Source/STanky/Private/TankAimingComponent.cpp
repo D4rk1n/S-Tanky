@@ -77,9 +77,5 @@ void UTankAimingComponent::AimAt(FVector WorldAimLocation, float LSpeed)
 		MoveBarrel(AimDirection);
 		MoveTurret(AimDirection);
 	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("No AimSolution"));
-	}
 }
 

@@ -2,20 +2,20 @@
 
 #pragma once
 #include "TankAimingComponent.h"
-
+#include "TankBarrel.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
+
+class AProjectile;
 
 UCLASS()
 class STANKY_API ATank : public APawn
 {
 	GENERATED_BODY()
+private:
+	UTankBarrel * Barrel;
 
-public:
-	// Sets default values for this pawn's properties
-	ATank();
-	void AimAt(FVector HitLocation);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -28,11 +28,19 @@ protected:
 		void Fire();
 	UPROPERTY(EditAnyWhere, Category = Firing)
 		float LaunchSpeed = 100000;
-public:	
+	UPROPERTY(EditAnyWhere, Category = Firing)
+		TSubclassOf<AProjectile>  Projectile = nullptr;
+public:
+	// Sets default values for this pawn's properties
+	ATank();
+	void AimAt(FVector HitLocation);
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	
+
 };
+

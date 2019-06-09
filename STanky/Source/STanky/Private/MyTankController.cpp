@@ -22,7 +22,6 @@ void AMyTankController::AimCrosshair()
 	if(SightRayHit(HitLocation))
 		GetControlledTank()->AimAt(HitLocation);
 	else {
-		UE_LOG(LogTemp, Warning, TEXT("NoAimCrosshair"));
 	}
 }
 
