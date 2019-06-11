@@ -18,5 +18,5 @@ public :
 	UFUNCTION(BlueprintCallable,Category = Input)
 	void SetThrottle(float S);
 	UPROPERTY(EditDefaultsOnly)
-		float Force = 40000;
+		float Force = 40000000;
 };
