@@ -14,8 +14,6 @@ void AMyTankController::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	AimCrosshair();
 	auto s = GetControlledTank()->GetActorLocation().ToString();
-	GetWorld()->GetTimeSeconds();
-		UE_LOG(LogTemp, Log, TEXT("at %f is at %s "), GetWorld()->GetTimeSeconds(), *s);
 }
 
 void AMyTankController::AimCrosshair()
@@ -67,8 +65,6 @@ bool AMyTankController::GetLookDirection(FVector LookDirection, FVector &Hit)
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("NoLineTrace"));
-		//Hit.Set(0, 0, 0);
 		return false;
 	}
 
